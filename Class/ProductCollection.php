@@ -5,7 +5,7 @@ class ProductCollection {
     private $products = array();
     private $filename;
 
-    public function __construct($filename = 'product_list_import.csv') {
+    public function __construct($filename = 'product_list_input.csv') {
         $this->filename = $filename;
     }
     
@@ -19,10 +19,9 @@ class ProductCollection {
     private function parseCSV($filename) {
         $csv = file_get_contents($filename);
 
-        $rows = explode("\n");
+        $rows = explode("\n", $csv);
 
-        $name_fields = array_shift($rows);
-        $name_fields = str_getcsv($name_fields);
+        $name_fields = str_getcsv(array_shift($rows));
 
         $products = array();
         $i = 0;
