@@ -1,7 +1,7 @@
 <?php
 
 spl_autoload_register(function ($class) {
-    include 'Class/' . $class . '.class.php';
+    include 'Class/' . $class . '.php';
 });
 
 $_productCollection = new ProductCollection();
