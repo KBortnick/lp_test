@@ -12,17 +12,19 @@ class Object {
             }
         }
     }
+    
+    public function cleanKey($key){
+        return preg_replace('/[^a-z0-9_]/i', '', strtr(trim($key),' ','_'));
+    }
 
     public function addData($key, $value) {
-        $key = preg_replace('[^a-zA-Z0-9 _\-]', '', trim($key));
-        $key = strtr($key,' ','_');
+        $key = $this->cleanKey($key);
         $this->data[$key] = $value;
     }
 
     public function getData($key = null) {
         if ($key) {
-            $key = preg_replace('[^a-zA-Z0-9 _\-]', '', trim($key));
-            $key = strtr($key,' ','_');
+            $key = $this->cleanKey($key);
             if(isset($this->data[$key])){
                 return $this->data[$key];
             }

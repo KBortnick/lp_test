@@ -1,0 +1,20 @@
+.wrapper {
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+.item {
+    padding: 5px;
+    margin: 5px;
+    float: left;
+    border: 1px solid #000;
+}
+.item .thumb {
+    text-align:center;
+}
+.item .data {
+    text-align: center;
+}
+.item-more {
+    display: none;
+}
