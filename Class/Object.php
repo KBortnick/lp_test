@@ -14,13 +14,15 @@ class Object {
     }
 
     public function addData($key, $value) {
-        $key = strtolower($key);
+        $key = preg_replace('[^a-zA-Z0-9 _\-]', '', trim($key));
+        $key = strtr($key,' ','_');
         $this->data[$key] = $value;
     }
 
     public function getData($key = null) {
         if ($key) {
-            $key = strtolower($key);
+            $key = preg_replace('[^a-zA-Z0-9 _\-]', '', trim($key));
+            $key = strtr($key,' ','_');
             if(isset($this->data[$key])){
                 return $this->data[$key];
             }

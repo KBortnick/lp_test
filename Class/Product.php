@@ -7,7 +7,12 @@ class Product extends Object {
         $key = strtolower($key);
         if($key == 'tags'){
             $value = explode(',',$value);
-            array_map('trim',$value);
+            $value = array_map('trim',$value);
+            foreach($value as $k => $v){
+                if(empty($v)){
+                    unset($value[$k]);
+                }
+            }
         }
         return parent::addData($key,$value);
     }
