@@ -17,17 +17,14 @@ class ProductCollection {
 
     /** Convert CSV into array of product data arrays * */
     private function parseCSV($filename) {
-        $csv = file_get_contents($filename);
-
-        $rows = explode("\n", $csv);
-
-        $name_fields = str_getcsv(array_shift($rows));
+        $h = fopen($filename,'r');
+        $rows = fgetcsv($h);
+        $name_fields = array_shift($rows);
 
         $products = array();
         $i = 0;
         foreach ($rows as $row) {
-            $fields = str_getcsv($row);
-            foreach ($fields as $k => $v) {
+            foreach ($row as $k => $v) {
                 $products[$i][$name_fields[$k]] = $v;
             }
             $i++;
