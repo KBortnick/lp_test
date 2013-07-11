@@ -9,10 +9,10 @@ class Product extends Object {
             $value = explode(',',$value);
             array_map('trim',$value);
         }
-        return parent::addData($key.$value);
+        return parent::addData($key,$value);
     }
     
-    public function getData($key){
+    public function getData($key=null){
         $key = strtolower($key);
         
         return parent::getData($key);

@@ -19,7 +19,7 @@ class ProductCollection {
     private function parseCSV($filename) {
         $csv = file_get_contents($filename);
 
-        $b = explode("\r", $csv);
+        $rows = explode("\r", $csv);
 
         $name_fields = str_getcsv(array_shift($rows));
 
