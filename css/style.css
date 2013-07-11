@@ -12,6 +12,9 @@
 .item .thumb {
     text-align:center;
 }
+.item .thumb img {
+    height: 200px;
+}
 .item .data {
     text-align: center;
 }

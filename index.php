@@ -5,6 +5,17 @@ spl_autoload_register(function ($class) {
 });
 
 $_productCollection = new ProductCollection();
+
+$preferences = array(
+    'sweetness',
+    'acidity',
+    'bitterness',
+    'roast',
+    'intensity',
+    'complexity',
+    'structure'
+)
+
 ?>
 
 <html>
@@ -12,7 +23,18 @@ $_productCollection = new ProductCollection();
         <link href="css/style.css" rel="stylesheet" type="text/css">
     </head>
     <body>
-        
+        <div class="wrapper">
+            <form action="" method="GET">
+                Personal Preferences:
+                <?php 
+                    foreach($preferences as $pref){
+                    ?>
+                        <input type="checkbox" name="pref[]" value="<?php echo $pref; ?>" /><?php echo $pref; ?> <br>
+                    <?php
+                    }
+                ?>
+            </form>
+        </div>
         <div class="wrapper">
             <?php
                 foreach($_productCollection->getProducts() as $product){
@@ -40,4 +62,3 @@ $_productCollection = new ProductCollection();
         </div>
     </body>
 </html>
-echo '<pre>';
