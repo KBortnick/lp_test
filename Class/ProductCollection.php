@@ -5,7 +5,7 @@ class ProductCollection {
     private $products = array();
     private $filename;
 
-    public function __construct($filename = 'product_list_import.csv') {
+    public function __construct($filename = 'product_list_input.csv') {
         $this->filename = $filename;
     }
     
