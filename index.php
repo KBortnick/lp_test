@@ -1,21 +1,36 @@
 <?php
+    spl_autoload_register(function ($class) {
+        include 'Class/' . $class . '.php';
+    });
 
-spl_autoload_register(function ($class) {
-    include 'Class/' . $class . '.php';
-});
+    $_productCollection = new ProductCollection();
 
-$_productCollection = new ProductCollection();
+    $preferences = array(
+        'sweetness',
+        'acidity',
+        'bitterness',
+        'roast',
+        'intensity',
+        'complexity',
+        'structure'
+    )
 
-$preferences = array(
-    'sweetness',
-    'acidity',
-    'bitterness',
-    'roast',
-    'intensity',
-    'complexity',
-    'structure'
-)
-
+    $sortable = array();
+    $weighted = array();
+    foreach ($_productCollection->getProducts() as $k => $product){
+        $sortable[(string)$k] = $product;
+        $weight = 0;
+        foreach($_GET['pref'] as $sp){
+            if(in_array($sp,$preferences)){
+                $val = $product->getData($sp);
+                if($val){
+                    $weight += $val;
+                }
+            }
+        }
+        $weighted[(string)$k] = $weight;
+    }
+    arsort($weighted);
 ?>
 
 <html>
@@ -25,19 +40,24 @@ $preferences = array(
     <body>
         <div class="wrapper">
             <form action="" method="GET">
-                Personal Preferences:
+                <strong>Personal Preferences:</strong> <br>
+                <?php print_r($_GET['pref']); ?>
                 <?php 
                     foreach($preferences as $pref){
                     ?>
-                        <input type="checkbox" name="pref[]" value="<?php echo $pref; ?>" /><?php echo $pref; ?> <br>
+                        <input type="checkbox" name="pref[]" value="<?php echo $pref; ?>" <?php
+                               if(in_array($pref,$_GET['pref'])){ echo 'checked="checked"'; }
+                               ?> /><?php echo $pref; ?> <br>
                     <?php
                     }
                 ?>
+                <input type="submit" name="submit" value="Search" />
             </form>
         </div>
         <div class="wrapper">
             <?php
-                foreach($_productCollection->getProducts() as $product){
+                foreach($weighted as $key){
+                    $product = $sortable[$key];
                     ?>
                     <div class="item" id="<?php echo $product->getData('handle'); ?>">
                         <div class="thumb">
