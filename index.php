@@ -58,7 +58,7 @@
         </div>
         <div class="wrapper">
             <?php
-                foreach($weighted as $key){
+                foreach($weighted as $key => $weight){
                     $product = $sortable[$key];
                     ?>
                     <div class="item" id="<?php echo $product->getData('handle'); ?>">
