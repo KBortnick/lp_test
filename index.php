@@ -13,7 +13,7 @@
         'intensity',
         'complexity',
         'structure'
-    )
+    );
 
     $sortable = array();
     $weighted = array();
