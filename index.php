@@ -66,8 +66,8 @@
                             <img src="images/<?php echo $product->getData('handle'); ?>.jpg">
                         </div>
                         <div class="data">
-                            <h3><?php echo $product->getData('name'); ?></h3><br>
-                            <?php if($weight){ ?><span>Your preference rating: <?php echo $weight; ?></span><?php } ?>
+                            <h3><?php echo $product->getData('name'); ?></h3>
+                            <?php if($weight){ ?><span>Your preference rating: <?php echo $weight; ?></span><br><?php } ?>
                             <button class="view_more" onClick="">More Details</button>
                         </div>
                     </div>
