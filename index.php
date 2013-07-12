@@ -46,7 +46,7 @@
                     foreach($preferences as $pref){
                     ?>
                         <input type="checkbox" name="pref[]" value="<?php echo $pref; ?>" <?php
-                               if(in_array($pref,$_GET['pref'])){ echo 'checked="checked"'; }
+                               if(isset($_GET['pref']) && in_array($pref,$_GET['pref'])){ echo 'checked="checked"'; }
                                ?> /><?php echo $pref; ?> <br>
                     <?php
                     }
