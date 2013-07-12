@@ -20,11 +20,13 @@
     foreach ($_productCollection->getProducts() as $k => $product){
         $sortable[(string)$k] = $product;
         $weight = 0;
-        foreach($_GET['pref'] as $sp){
-            if(in_array($sp,$preferences)){
-                $val = $product->getData($sp);
-                if($val){
-                    $weight += $val;
+        if(isset($_GET['pref'])){
+            foreach($_GET['pref'] as $sp){
+                if(in_array($sp,$preferences)){
+                    $val = $product->getData($sp);
+                    if($val){
+                        $weight += $val;
+                    }
                 }
             }
         }
